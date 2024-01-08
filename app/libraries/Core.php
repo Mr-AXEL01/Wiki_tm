@@ -35,6 +35,13 @@ class Core {
                 unset($url[1]);
             }
         }
+
+        // Get params 
+        $this ->params = $url ? array_values($url) : [];
+
+        // call a callback with arrray of params
+        call_user_func_array([$this->currentController,
+        $this->currentMethod],$this->params);
     }
 
     public function getUrl() {
