@@ -12,17 +12,19 @@ class Core {
     public function __construct() {
         $url = $this->getUrl();
 
-         // Look in controllers for first value
-         if(isset($url[0]) && file_exists('../app/controllers/' . ucwords($url[0]). '.php')) {
-            // if exists , set as controller
-            $this->currentController = ucwords($url[0]);
-            // unset o Index
-            unset($url[0]);
+        // Look in controllers for first value
+        if(isset($url[0]) && file_exists('../app/controllers/' . ucwords($url[0]). '.php')) {
+           // if exists , set as controller
+           $this->currentController = ucwords($url[0]);
+           // unset o Index
+           unset($url[0]);
         }
 
         // require the controller
         require_once '../app/controllers/'. $this->currentController .'.php';
 
+        // instanciate controller class
+        $this->currentController = new $this->currentController;
     }
 
     public function getUrl() {
