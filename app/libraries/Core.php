@@ -25,6 +25,16 @@ class Core {
 
         // instanciate controller class
         $this->currentController = new $this->currentController;
+
+        // check for second part of Url
+        if (isset($url[1])) {
+            // check to see if method exists in controller
+            if(method_exists($this->currentController, $url[1])) {
+                $this->currentMethod = $url[1];
+                // unset 1 index
+                unset($url[1]);
+            }
+        }
     }
 
     public function getUrl() {
