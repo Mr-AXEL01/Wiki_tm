@@ -23,5 +23,6 @@ class Core {
         // break the url into array of parts
         $url = explode('/',$url);
         return $url;
+       }
     }
 }
