@@ -5,7 +5,7 @@ class Pages extends Controller {
     }
     public function index() {
         $data = [
-            'title' => 'welcome'
+            'title' => 'Wiki_Tm'
         ];
 
         $this->view('pages/index' , $data);
