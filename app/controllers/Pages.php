@@ -5,7 +5,8 @@ class Pages extends Controller {
     }
     public function index() {
         $data = [
-            'title' => 'Wiki_Tm'
+            'title' => 'Wiki_Tm',
+            'description' => 'Simple social network built on the mvc php design pattern'
         ];
 
         $this->view('pages/index' , $data);
