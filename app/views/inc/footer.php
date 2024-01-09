@@ -1,4 +1,4 @@
 
-    <script src="<?= URLROOT;?>/js/main.js"></script>
+    <script src="<?php URLROOT;?>/js/main.js"></script>
 </body>
 </html>
