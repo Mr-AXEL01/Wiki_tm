@@ -49,15 +49,13 @@
                 <div id="passwordError" class="text-red-500 text-xs mt-1"></div>
             </div>
 
-            <!-- Confirm Password -->
-            <div class="mb-6">
-                <label for="confirm_password" class="block text-gray-700 text-sm font-medium mb-2">Confirm Password</label>
-                <input type="password" id="confirm_password" name="confirm_password" class="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500">
-                <div id="confirmPasswordError" class="text-red-500 text-xs mt-1"></div>
+            <div class="subimtion flex justify-between items-center">
+                <!-- Submit Button -->
+                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-400 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition duration-300">Register</button>
+                <a href="<?php echo URLROOT;?>/users/login" class="text-blue-500">
+                    already have an account.
+                </a>
             </div>
-
-            <!-- Submit Button -->
-            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-400 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 transition duration-300">Register</button>
         </form>
     </div>
 </section>
@@ -87,12 +85,6 @@
         const password = document.getElementById('password').value;
         if (password.trim() === '' || password.length < 6) {
             displayError('password', 'Password must be at least 6 characters');
-            return false;
-        }
-
-        const confirmPassword = document.getElementById('confirm_password').value;
-        if (confirmPassword !== password) {
-            displayError('confirmPassword', 'Passwords do not match');
             return false;
         }
         
