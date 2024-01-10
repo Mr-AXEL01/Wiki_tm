@@ -25,7 +25,7 @@ class Users extends Controller {
 
             // check email validation 
             if(!empty($_POST['email'])){
-                if($this->userModel->findUserByEmail($data)) {
+                if($this->User->findUserByEmail($data)) {
                     $data['email_err']= 'Email is already in use';
                 }
             }
