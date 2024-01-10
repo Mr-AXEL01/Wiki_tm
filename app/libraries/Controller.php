@@ -14,6 +14,14 @@ class Controller {
         return new $model(); 
     }
 
+    public function service($service){
+        // Require servi file
+        require_once '../app/services/implementations/' . $service . '.php';
+  
+        // Instatiate servi
+        return new $service();
+      }
+
     // Load view
     public function view($view, $data = []) {
         // check the view file
@@ -21,7 +29,7 @@ class Controller {
             require_once '../app/views/'. $view . '.php';
         } else {
             // view does not exist . 
-            die ('View does not exist');
+            die ('View does not exist.');
         }
     }
 }

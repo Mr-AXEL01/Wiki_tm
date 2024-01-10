@@ -11,7 +11,11 @@ class UserService implements UserServiceInterface
 
     public function create(User $user)
     {
-        $this->db->query('INSERT INTO users (fullName, username, pictureUser, email, password, role) 
+        if (empty($user->role)) {
+            $user->role = 'author';
+        }
+        
+        $this->db->query('INSERT INTO user (fullName, username, pictureUser, email, password, role) 
                           VALUES (:fullName, :username, :pictureUser, :email, :password, :role)');
         $this->bindValues($user);
 
@@ -20,7 +24,7 @@ class UserService implements UserServiceInterface
 
     public function read()
     {
-        $sql = "SELECT * FROM users";
+        $sql = "SELECT * FROM user";
 
         $this->db->query($sql);
         return $this->db->resultSet();
@@ -44,7 +48,7 @@ class UserService implements UserServiceInterface
 
     public function delete($idUser)
     {
-        $this->db->query('DELETE FROM users WHERE idUser = :idUser');
+        $this->db->query('DELETE FROM user WHERE idUser = :idUser');
         $this->db->bind(':idUser', $idUser);
         
         return $this->db->execute();
@@ -52,7 +56,7 @@ class UserService implements UserServiceInterface
 
     public function fetch($idUser)
     {
-        $this->db->query('SELECT * FROM users WHERE idUser = :idUser');
+        $this->db->query('SELECT * FROM user WHERE idUser = :idUser');
         $this->db->bind(':idUser', $idUser);
         return $this->db->single();
     }

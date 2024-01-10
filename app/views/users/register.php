@@ -39,7 +39,6 @@
             <div class="mb-4">
                 <label for="email" class="block text-gray-700 text-sm font-medium mb-2">Email</label>
                 <input type="email" id="email" name="email" class="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500">
-                <span class="invalid-feedback"><?php echo $data['email_err']; ?></span>
                 <div id="emailError" class="text-red-500 text-xs mt-1"></div>
             </div>
 

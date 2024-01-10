@@ -23,12 +23,6 @@ class Users extends Controller {
                 'email_err' => '',
             ];
 
-            // check email validation 
-            if(!empty($_POST['email'])){
-                if($this->User->findUserByEmail($data)) {
-                    $data['email_err']= 'Email is already in use';
-                }
-            }
 
         } else {
             // load form
