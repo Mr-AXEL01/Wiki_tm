@@ -14,7 +14,7 @@ class UserService implements UserServiceInterface
         if (empty($user->role)) {
             $user->role = 'author';
         }
-        
+
         $this->db->query('INSERT INTO user (fullName, username, pictureUser, email, password, role) 
                           VALUES (:fullName, :username, :pictureUser, :email, :password, :role)');
         $this->bindValues($user);
@@ -52,6 +52,20 @@ class UserService implements UserServiceInterface
         $this->db->bind(':idUser', $idUser);
         
         return $this->db->execute();
+    }
+
+    public function fetchByEmail($email){
+
+        $this->db->query('SELECT * FROM users WHERE email = :email');
+        $this->db->bind(":email", $email);
+        return $this->db->single();
+        // check row
+        if($this->db->single()){
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     public function fetch($idUser)

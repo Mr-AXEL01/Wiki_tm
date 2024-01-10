@@ -2,7 +2,8 @@
 
 class Users extends Controller {
     public function __construct() {
-
+        $this->model = $this->model("User");
+        $this->service = $this->service("UserService");
     }
     public function register() {
         // check for POST
@@ -20,7 +21,6 @@ class Users extends Controller {
                 'email' =>trim($_POST['email']),
                 'password' =>trim($_POST['password']),
                 'confirm_password' =>trim($_POST['confirm_password']),
-                'email_err' => '',
             ];
 
 
