@@ -18,8 +18,17 @@ class Users extends Controller {
                 'fullName' =>trim($_POST['fullName']),
                 'username' =>trim($_POST['username']),
                 'email' =>trim($_POST['email']),
-                'password' =>trim($_POST['password'])
+                'password' =>trim($_POST['password']),
+                'confirm_password' =>trim($_POST['confirm_password']),
+                'email_err' => '',
             ];
+
+            // check email validation 
+            if(!empty($_POST['email'])){
+                if($this->userModel->findUserByEmail($data)) {
+                    $data['email_err']= 'Email is already in use';
+                }
+            }
 
         } else {
             // load form
@@ -28,7 +37,8 @@ class Users extends Controller {
                 'fullName' =>'',
                 'username' =>'',
                 'email' =>'',
-                'password' =>''
+                'password' =>'',
+                'confirm_password' =>''
             ];
 
             // load view

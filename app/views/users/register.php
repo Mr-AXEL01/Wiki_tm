@@ -39,6 +39,7 @@
             <div class="mb-4">
                 <label for="email" class="block text-gray-700 text-sm font-medium mb-2">Email</label>
                 <input type="email" id="email" name="email" class="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500">
+                <span class="invalid-feedback"><?php echo $data['email_err']; ?></span>
                 <div id="emailError" class="text-red-500 text-xs mt-1"></div>
             </div>
 
@@ -47,6 +48,13 @@
                 <label for="password" class="block text-gray-700 text-sm font-medium mb-2">Password</label>
                 <input type="password" id="password" name="password" class="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500">
                 <div id="passwordError" class="text-red-500 text-xs mt-1"></div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="mb-6">
+                <label for="confirm_password" class="block text-gray-700 text-sm font-medium mb-2">Confirm Password</label>
+                <input type="password" id="confirm_password" name="confirm_password" class="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500">
+                <div id="confirmPasswordError" class="text-red-500 text-xs mt-1"></div>
             </div>
 
             <div class="subimtion flex justify-between items-center">
@@ -85,6 +93,12 @@
         const password = document.getElementById('password').value;
         if (password.trim() === '' || password.length < 6) {
             displayError('password', 'Password must be at least 6 characters');
+            return false;
+        }
+
+        const confirmPassword = document.getElementById('confirm_password').value;
+        if (confirmPassword !== password) {
+            displayError('confirmPassword', 'Passwords do not match');
             return false;
         }
         
