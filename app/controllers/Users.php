@@ -11,15 +11,15 @@ class Users extends Controller {
         } else {
             // load form
             $data = [
+                'pictureUser' =>'',
                 'fullName' =>'',
                 'username' =>'',
-                'pictureUser' =>'',
                 'email' =>'',
                 'password' =>'',
                 'confirm_password' =>'',
+                'pictureUser_err' =>'',
                 'fullName_err' =>'',
                 'username_err' =>'',
-                'pictureUser_err' =>'',
                 'email_err' =>'',
                 'password_err' =>'',
                 'confirm_password_err' =>''
@@ -27,6 +27,24 @@ class Users extends Controller {
 
             // load view
             $this->view('users/register', $data);
+        }
+    }
+
+    public function login() {
+        // check for POST
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // process form
+        } else {
+            // load form
+            $data = [
+                'email' =>'',
+                'password' =>'',
+                'email_err' =>'',
+                'password_err' =>''
+            ];
+
+            // load view
+            $this->view('users/login', $data);
         }
     }
 }
