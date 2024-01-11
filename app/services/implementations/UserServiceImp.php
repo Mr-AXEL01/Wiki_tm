@@ -63,7 +63,7 @@ class UserServiceImp implements UserServiceInterface
                 print_r('password incorrect');
             }
         }else {
-            header("location: ". URLROOT." /users/login");
+            redirect('users/login');
         }
         
     }

@@ -3,7 +3,7 @@
 <section class="bg-gray-100 min-h-screen flex items-center justify-center">
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h2 class="text-2xl font-bold mb-6">Login into your wiki</h2>
-        <form action="" method="POST">
+        <form action="<?php echo URLROOT; ?>/users/login" method="POST">
             <!-- Email -->
             <div class="mb-4">
                 <label for="email" class="block text-gray-700 text-sm font-medium mb-2">Email</label>
