@@ -39,7 +39,9 @@ class Database {
         }
         return self::$_instance;
     }
-
+    public function getConnection (){
+        return $this->dbh;
+    }
     # Prepare statement with query
     public function query ($sql) {
         $this->stmt = $this->dbh->prepare($sql);

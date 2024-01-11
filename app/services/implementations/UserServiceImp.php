@@ -1,12 +1,14 @@
 <?php
 
-class UserService implements UserServiceInterface
+class UserServiceImp implements UserServiceInterface
 {
     private $db;
+    private $dbh;
 
     public function __construct()
     {
         $this->db = Database::getInstance();
+        $this->dbh = $this->db->getConnection();
     }
 
     public function create(User $user)
@@ -14,58 +16,56 @@ class UserService implements UserServiceInterface
         if (empty($user->role)) {
             $user->role = 'author';
         }
-
-        $this->db->query('INSERT INTO user (fullName, username, pictureUser, email, password, role) 
+        
+        $stmt = $this->dbh->prepare('INSERT INTO user (fullName, username, pictureUser, email, password, role) 
                           VALUES (:fullName, :username, :pictureUser, :email, :password, :role)');
-        $this->bindValues($user);
-
-        return $this->db->execute();
+        $fullName = $user->__get("fullName");
+        $username = $user->__get("username");
+        $pictureUser = $user->__get("pictureUser");
+        $email = $user->__get("email");
+        $pass = $user->__get("password");
+        $role = $user->__get("role");
+        
+        $stmt->bindParam(':fullName',$fullName );
+        $stmt->bindParam(':username',$username );
+        $stmt->bindParam(':pictureUser',$pictureUser );
+        $stmt->bindParam(':email',$email );
+        $stmt->bindParam(':password',$pass );
+        $stmt->bindParam(':role',$role );
+        
+        
+        $stmt->execute();
     }
 
     public function read()
     {
-        $sql = "SELECT * FROM user";
+        $sql = "SELECT * FROM user ORDER BY idUser DESC";
 
         $this->db->query($sql);
         return $this->db->resultSet();
     }
 
-    public function update(User $user)
-    {
-        $this->db->query('UPDATE users 
-                          SET fullName = :fullName, 
-                              username = :username, 
-                              pictureUser = :pictureUser, 
-                              email = :email, 
-                              password = :password, 
-                              role = :role 
-                          WHERE idUser = :idUser');
-        $this->bindValues($user);
-        $this->db->bind(':idUser', $user->idUser);
-
-        return $this->db->execute();
-    }
-
-    public function delete($idUser)
-    {
-        $this->db->query('DELETE FROM user WHERE idUser = :idUser');
-        $this->db->bind(':idUser', $idUser);
-        
-        return $this->db->execute();
-    }
-
-    public function fetchByEmail($email){
-
-        $this->db->query('SELECT * FROM users WHERE email = :email');
-        $this->db->bind(":email", $email);
-        return $this->db->single();
-        // check row
-        if($this->db->single()){
-            return true;
-        } else {
-            return false;
+    public function fetchByEmail(User $user){
+        $email = $user->__get("email");
+        $pass = $user->__get("password");
+        $stmt = $this->dbh->prepare('SELECT * FROM user WHERE email = :email');
+        $stmt->bindParam(':email',$email );
+        $stmt->execute();
+        if($stmt->rowCount() > 0){
+            $userInfo = ($stmt->fetch());
+            if(password_verify($pass,$userInfo['password'])) {
+                if($userInfo['role'] == 'admin'){
+                    header('Location:..');
+                }else{
+                    header('Location:....');
+                }
+            }else {
+                print_r('password incorrect');
+            }
+        }else {
+            header("location: ". URLROOT." /users/login");
         }
-
+        
     }
 
     public function fetch($idUser)
@@ -78,7 +78,8 @@ class UserService implements UserServiceInterface
     private function bindValues(User $user)
     {
         foreach ($user as $property => $value) {
-            $this->db->bind(':' . $property, $value);
+            die(':' . $property. $value);
+            // $this->db->bind(':' . $property, $value);
         }
     }
 }

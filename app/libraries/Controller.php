@@ -18,7 +18,7 @@ class Controller {
         // Require servi file
         require_once '../app/services/implementations/' . $service . '.php';
   
-        // Instatiate servi
+        // Instatiate service
         return new $service();
       }
 
@@ -29,7 +29,7 @@ class Controller {
             require_once '../app/views/'. $view . '.php';
         } else {
             // view does not exist . 
-            die ('View does not exist.');
+            die ('View $view does not exist.');
         }
     }
 }

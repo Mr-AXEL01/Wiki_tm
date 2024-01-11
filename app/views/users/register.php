@@ -45,14 +45,14 @@
             <!-- Password -->
             <div class="mb-4">
                 <label for="password" class="block text-gray-700 text-sm font-medium mb-2">Password</label>
-                <input type="password" id="password" name="password" class="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500">
+                <input type="password" id="password" name="password" placeholder="*****" class="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500">
                 <div id="passwordError" class="text-red-500 text-xs mt-1"></div>
             </div>
 
             <!-- Confirm Password -->
             <div class="mb-6">
                 <label for="confirm_password" class="block text-gray-700 text-sm font-medium mb-2">Confirm Password</label>
-                <input type="password" id="confirm_password" name="confirm_password" class="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500">
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="*****" class="w-full border rounded-md py-2 px-3 focus:outline-none focus:border-blue-500">
                 <div id="confirmPasswordError" class="text-red-500 text-xs mt-1"></div>
             </div>
 
