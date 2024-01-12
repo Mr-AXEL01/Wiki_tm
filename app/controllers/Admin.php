@@ -1,6 +1,6 @@
 <?php
 
-class AdminController extends Controller {
+class Admin extends Controller {
 
     private $categoryService;
     private $tagService;
