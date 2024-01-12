@@ -67,7 +67,7 @@ class Users extends Controller {
         // header("Location:".URLROOT."client/product");
     }
     
-    public function destroySession($user)
+    public function logout($user)
     {
         unset($_SESSION["idUser"]);
         unset($_SESSION["fullName"]);
@@ -76,7 +76,7 @@ class Users extends Controller {
         redirect('users/login');
     }
     
-    public function islogged()
+    public function isloggedIn()
     {
         if(isset($_SESSION["idUser"])){
             return true;
