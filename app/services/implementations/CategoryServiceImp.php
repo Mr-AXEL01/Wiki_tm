@@ -1,6 +1,6 @@
 <?php
 
-class UserServiceImp implements UserServiceInterface{
+class CategoryServiceImp implements CategoryServiceInterface{
     private $db;
     private $dbh;
 
