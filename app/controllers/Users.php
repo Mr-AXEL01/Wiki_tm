@@ -74,7 +74,7 @@ class Users extends Controller {
         redirect('users/login');
     }
     
-    public function isloggedIn()
+    public static function isloggedIn()
     {
         return isset($_SESSION["idUser"]);
     }

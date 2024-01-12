@@ -4,12 +4,14 @@ class TagOfWikiServiceImp implements TagOfWikiServiceInterface {
     private $db;
     private $dbh;
 
-    public function __construct() {
+    public function __construct() 
+    {
         $this->db = Database::getInstance();
         $this->dbh = $this->db->getConnection();
     }
 
-    public function create($idTag, $idWiki) {
+    public function create($idTag, $idWiki) 
+    {
         $dbh = $this->dbh;
         $sql = "INSERT INTO tagsOfWiki (idTag, idWiki) VALUES (:idTag, :idWiki)";
         $stmt = $dbh->prepare($sql);
@@ -18,7 +20,8 @@ class TagOfWikiServiceImp implements TagOfWikiServiceInterface {
         return $stmt->execute();
     }
 
-    public function delete($idTag, $idWiki) {
+    public function delete($idTag, $idWiki) 
+    {
         $dbh = $this->dbh;
         $sql = "DELETE FROM tagsOfWiki WHERE idTag = :idTag AND idWiki = :idWiki";
         $stmt = $dbh->prepare($sql);
