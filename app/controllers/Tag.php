@@ -14,14 +14,14 @@ class Tag extends Controller {
         }
     }
 
-    public function delete($id) {
-        $this->tagService->delete($id);
+    public function delete($Tag) {
+        $this->tagService->delete($Tag);
         redirect('admin/tags');
     }
 
     public function update($idTag) {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $newTag = new Tag();
+            $newTag = new Tag(); // Instantiate the Tag class
             $newTag->nameTag = $_POST["nameTag"];
 
             try {
