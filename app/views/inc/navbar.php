@@ -79,8 +79,12 @@
 			</div>
 			<div class="mt-auto">
 				<div class="pt-6">
-					<a class="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold leading-none bg-gray-50 hover:bg-gray-100 rounded-xl" href="<?php URLROOT;?>/users/login">Sign in</a>
-					<a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-blue-600 hover:bg-blue-700  rounded-xl" href="<?php URLROOT;?>/users/register">Sign Up</a>
+				<?php if(isset($_SESSION['idUser'])) : ?>
+					<a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-blue-600 hover:bg-blue-700  rounded-xl" href="<?php echo URLROOT;?>/users/logout">Logout</a>
+				<?php else : ?> 
+					<a class="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold leading-none bg-gray-50 hover:bg-gray-100 rounded-xl" href="<?php echo URLROOT;?>/users/login">Sign in</a>
+					<a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-blue-600 hover:bg-blue-700  rounded-xl" href="<?php echo URLROOT;?>/users/register">Sign Up</a>
+					<?php endif ; ?>
 				</div>
 			</div>
 		</nav>

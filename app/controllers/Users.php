@@ -35,25 +35,23 @@ class Users extends Controller {
     public function register()
     {
         if($_SERVER["REQUEST_METHOD"] == "POST" ){
-            var_dump($_POST);
-            $fullName = $_POST["fullName"];
-            $username = $_POST["username"];
-            $pictureUser = $_POST["pictureUser"];
-            $email = $_POST["email"];
-            $password = $_POST["password"];
+            // var_dump($_POST);
             $newUser = new User();
-            $newUser->fullName = $fullName;
-            $newUser->username = $username;
+            $newUser->fullName = $_POST["fullName"];
+            $newUser->username = $_POST["username"];
+            $pictureUser = $_FILES["pictureUser"]["name"];
+            $tempName = $_FILES["pictureUser"]["tmp_name"];
+            move_uploaded_file($tempName,   URLROOT . '/public/images/uploads/' . $pictureUser);
             $newUser->pictureUser = $pictureUser;
-            $newUser->email = $email;
-            $newUser->password = $password;
+            $newUser->email = $_POST["email"];
+            $newUser->password = $_POST["password"];
             try{
                 $this->service->create($newUser);
                 flash('register_success','You are registered and can log in');
                 redirect('users/login');
                }
                catch(PDOException $e){
-                die($e->getMessage());
+                die("Error: Unable to register. Please try again later.");
                }
         }
         $this->view("users/register");
@@ -67,7 +65,7 @@ class Users extends Controller {
         // header("Location:".URLROOT."client/product");
     }
     
-    public function logout($user)
+    public function logout()
     {
         unset($_SESSION["idUser"]);
         unset($_SESSION["fullName"]);
@@ -78,10 +76,6 @@ class Users extends Controller {
     
     public function isloggedIn()
     {
-        if(isset($_SESSION["idUser"])){
-            return true;
-        }else{
-            return false;
-        }
+        return isset($_SESSION["idUser"]);
     }
 }
