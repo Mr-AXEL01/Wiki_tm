@@ -10,9 +10,10 @@ require_once 'helpers/session_helper.php';
 function Autoloader($class) {
     $paths = [
         APPROOT."/libraries/",
-        APPROOT."/services/interfaces/",
-        APPROOT."/services/implementations/",
-        APPROOT."/models/"
+        APPROOT . "/services/interfaces/",
+        APPROOT . "/services/implementations/",
+        APPROOT."/models/",
+        APPROOT . "/controllers/"
     ];
 
 

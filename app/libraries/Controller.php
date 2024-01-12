@@ -24,12 +24,14 @@ class Controller {
 
     // Load view
     public function view($view, $data = []) {
-        // check the view file
-        if(file_exists('../app/views/'. $view . '.php')) {
-            require_once '../app/views/'. $view . '.php';
+        // Check the view file
+        $viewFile = '../app/views/' . $view . '.php';
+        
+        if (file_exists($viewFile)) {
+            require_once $viewFile;
         } else {
-            // view does not exist . 
-            die ('View $view does not exist.');
+            // View does not exist
+            die('View file not found: ' . $viewFile);
         }
     }
 }
