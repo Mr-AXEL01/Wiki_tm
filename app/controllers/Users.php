@@ -49,6 +49,7 @@ class Users extends Controller {
             $newUser->password = $password;
             try{
                 $this->service->create($newUser);
+                flash('register_success','You are registered and can log in');
                 redirect('users/login');
                }
                catch(PDOException $e){
