@@ -1,6 +1,6 @@
 <?php
 
-class User {
+class Wiki {
     private $idWiki;
     private $title; 
     private $content; 
