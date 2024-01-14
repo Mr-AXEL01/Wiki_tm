@@ -120,7 +120,6 @@ unset($_SESSION["CatId"]);
             </div>
             <form action="../controllers/ConWikis.php" method="post" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 max-md:max-w-lg mx-auto">
                 <?php
-                var_dump($wikiHome)   ;
                 foreach ($wikiHome as $wiki) :
                 ?>
 

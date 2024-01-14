@@ -59,7 +59,7 @@ class CategoryService implements CategoryInterface
     {
         $conn = $this->connect();
 
-        $query = "SELECT nameCategory FROM category WHERE category_name = :nameCategory";
+        $query = "SELECT nameCategory FROM category WHERE nameCategory = :nameCategory";
         $stmt = $conn->prepare($query);
         $stmt->bindParam(":nameCategory", $name);
         $stmt->execute();

@@ -142,64 +142,53 @@ if (isset($_POST['delete'])) {
     $WikisService->deleteWiki($id);
     header('Location: ../views/Author/dashboardWikis.php');
 }
+
 // ---------------------------Archive-----------------------------
+
 if (isset($_POST['archive'])) {
     $id = $_POST['archive'];
     $WikisService->ArchiveWiki($id);
     header('Location: ../views/admin/wikis.php');
 }
 // ---------------------------UnArchive-----------------------------
+
 if (isset($_POST['unarchive'])) {
     $id = $_POST['unarchive'];
     $WikisService->uNArchiveWiki($id);
     header('Location: ../views/admin/wikis.php');
 }
 
-
 // -------------------------------Count Wikis---------------------------------------------
+
 $wikiTot = $WikisService->CountWikis();
 
 // -------------------------------Count Archived Wikis---------------------------------------------
+
 $wikiArchived = $WikisService->CountArchivedWikis();
-
-
 
 // ----------------------------------- WIKI -------------------------------------------
 
 if(isset($_POST["wikiId"])) {
-    $_SESSION["wikiId"] = isset($_POST["wikiId"]);
+    $_SESSION["wikiId"] = isset($_POST["wikiId"]) ? $_POST["wikiId"] :'';
     
     
     header('Location: '.URLROOT. 'app/views/visiteur/WikiContent.php');
     
-    
-}
-$id = isset($_SESSION["wikiId"]) ? $_SESSION["wikiId"] :'';
+    }
+    $id = isset($_SESSION["wikiId"]) ? $_SESSION["wikiId"] :'';
+
 $wiki = $WikisService->Wiki($id);
 
 
 // -----------------------------------Tags---------------------------------------
 
-
-
 $tagse = $WikisService->WikiTag();
 
-
 // -------------------------ajax-----------------------------
-
-// if (isset($_POST['search'])) {
-//     $searchTerm = $_POST['search'];
-
-   
-//     $wikis = $WikisService->searchWikis($searchTerm);
-
-//     include(__DIR__ . "/../views/visiteur/Search.php");  
-// }
-
 
 if (isset($_POST['search'])) {
     $searchTerm = $_POST['search'];
         $wikis = $WikisService->searchWikis($searchTerm);
     require_once(__DIR__.'/../views/visiteur/Search.php');
     }
-// ?>
+?>

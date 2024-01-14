@@ -67,7 +67,7 @@ class WikiService
         JOIN tag ON tag.idTag = tagsofwiki.idTag 
         JOIN user On wiki.idUser = user.idUser
                   LEFT JOIN category ON wiki.idCategory = category.idCategory
-                  WHERE archived = '0'";
+                  WHERE archived = '1'";
 
         $stmt = $conn->prepare($query);
         $stmt->execute();
@@ -124,7 +124,7 @@ class WikiService
     {
 
         $conn = $this->connect();
-        $query = "SELECT * FROM wiki WHERE archived = '0' AND idUser = :idUser";
+        $query = "SELECT * FROM wiki WHERE archived = '1' AND idUser = :idUser";
         $stmt = $conn->prepare($query);
         $stmt->bindParam(":idUser", $id);
         $stmt->execute();
@@ -146,7 +146,7 @@ class WikiService
                   JOIN tag ON tag.idTag = tagsofwiki.idTag 
                   JOIN user On wiki.idUser = user.idUser
                   LEFT JOIN category ON wiki.idCategory = category.idCategory
-                  WHERE archived = '0' AND wiki.idCategory = :id";
+                  WHERE archived = '1' AND wiki.idCategory = :id";
 
         $stmt = $conn->prepare($query);
         $stmt->bindParam(":id", $id);
@@ -234,7 +234,7 @@ class WikiService
     {
 
         $conn = $this->connect();
-        $query = "UPDATE wiki set archived = '1' WHERE idWiki =:idWiki";
+        $query = "UPDATE wiki set archived = '0' WHERE idWiki =:idWiki";
         $stmt = $conn->prepare($query);
         $stmt->bindParam(":idWiki", $id);
         $stmt->execute();
@@ -243,7 +243,7 @@ class WikiService
     {
 
         $conn = $this->connect();
-        $query = "UPDATE wiki set archived = '0' WHERE idWiki =:idWiki";
+        $query = "UPDATE wiki set archived = '1' WHERE idWiki =:idWiki";
         $stmt = $conn->prepare($query);
         $stmt->bindParam(":idWiki", $id);
         $stmt->execute();
@@ -264,6 +264,8 @@ class WikiService
 
             $Adminwikis[] =    new wiki($row["idWiki"], $row["pictureWiki"], $row["titleWiki"], $row['contentWiki'], $row["summaryWiki"], $row['dateCreated'], $row["idCategory"], $row['idUser'], $row['archived']);
         }
+        // print_r($Adminwikis);
+        // die;
         return $Adminwikis;
     }
 
@@ -282,7 +284,7 @@ class WikiService
     {
 
         $conn = $this->connect();
-        $query = 'SELECT COUNT(idWiki) as Wikis FROM wiki WHERE archived = "1" ';
+        $query = 'SELECT COUNT(idWiki) as Wikis FROM wiki WHERE archived = "0" ';
         $stmt = $conn->prepare($query);
         $stmt->execute();
         $result = $stmt->fetchColumn();
@@ -294,21 +296,12 @@ class WikiService
         $query = 'SELECT * FROM wiki WHERE idWiki = :idWiki';
         $stmt = $conn->prepare($query);
         $stmt->bindParam(':idWiki', $id);
-        // if (!$stmt) {
-        //     die('Error in preparing the SQL query.');
-        // }
-        
         $stmt->execute();
-        
-        // if ($stmt->errorCode() !== '00000') {
-        //     $errorInfo = $stmt->errorInfo();
-        //     die('Error executing the SQL query: ' . $errorInfo[2]);
-        // }
-    
-        // // Fetch the result
+        // Fetch the result
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         // Check if any rows were returned
-        if (!$row) {
+        if (!$row) 
+        {
             return null;
         }
         $wiki = new wiki($row["idWiki"], $row["pictureWiki"], $row["titleWiki"], $row['contentWiki'], $row["summaryWiki"], $row['dateCreated'], $row["idCategory"], $row['idUser'], $row['archived']);

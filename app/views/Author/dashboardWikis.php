@@ -31,7 +31,7 @@ else{
         <div class="bg-white text-white shadow w-full p-2 flex items-center justify-between">
             <div class="flex items-center justify-between px-4 mx-auto w-[95%]">
                 <div class="flex items-center ">
-                    <img src="../../../public/images/logowiki.png" alt="Logo" class="w-24 h-18 mr-2">
+                    <a href="../index.php"><img src="../../../public/images/logowiki.png" alt="Logo" class="w-24 h-18 mr-2"></a>
 
                 </div>
                 <a href="../visiteur/wikis.php" class="flex gap-x-2 md:font-bold items-center text-[10px] md:text-[14px] h-10 px-5 text-indigo-100 transition-colors duration-150 bg-blue-600 rounded-lg focus:shadow-outline hover:bg-blue-700">Wikis</a>

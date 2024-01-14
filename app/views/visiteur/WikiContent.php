@@ -1,6 +1,6 @@
 <?php
 require_once(__DIR__ . "/../../controllers/ConWikis.php");
-[$idwiki, $image, $title, $summary, $content, $date] = $wiki
+[$idwiki, $image, $title, $summary, $content, $date] = $wiki;
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +16,7 @@ require_once(__DIR__ . "/../../controllers/ConWikis.php");
 
 <body>
     <div class="h-[35vh] w-full bg-gray-100 mt-2  overflow-hidden  ">
-        <img src="<?= $image ?>" class="hover:scale-110	rounded transition-all  duration-300 w-[95%]  mx-auto h-full" alt="">
+        <img src="<?= $image ?>" class="hover:scale-110	rounded transition-all  duration-300 w-[95%]  mx-auto h-full" alt="<?= $title ?>">
 
     </div>
     <div class="font-[sans-serif]  min-h-[100vh] bg-gray-100">

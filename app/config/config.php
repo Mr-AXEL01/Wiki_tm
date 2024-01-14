@@ -24,5 +24,5 @@ if (!define("password", "")) {
     define("password", "");
 }
 
-define("URLROOT", "http://localhost/soutnence/");
+define("URLROOT", "http://localhost/wiki_tm/");
 ?>
