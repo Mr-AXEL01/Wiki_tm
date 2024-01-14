@@ -1,2 +1,2 @@
-# Wiki_tm
-platform of Wikis where we have admins and authors and authors can create and edit or delete theme own wikis and admin can manipulate and organised all of wikis and categories and tags and have a statics in the Dashbords.
+#Voici le lien de gestion des tâches : 
+https://trello.com/invite/b/Ma6mhRFF/ATTI48fc92d51691c543fd4643e18e0236d3B9852A2B/wiki™

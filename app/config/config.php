@@ -1,14 +1,28 @@
 <?php
 
-// DB Paramas
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME', 'wiki_tm');
+if (!define("HOST", "localhost")) {
 
-// App Root
-define('APPROOT', dirname(dirname(__FILE__)));
-// URL Root
-define('URLROOT', 'http://localhost/WIKI_TM');
-// Site Name
-define('SITENAME','Wiki-Tm');
+    define("HOST", "localhost");
+}
+
+
+if (!define("DB", "wikis_tm_v1")) {
+
+    define("DB", "wikis_tm_v1");
+}
+
+
+
+if (!define("USER", "root")) {
+
+    define("USER", "root");
+}
+
+
+if (!define("password", "")) {
+
+    define("password", "");
+}
+
+define("URLROOT", "http://localhost/soutnence/");
+?>
