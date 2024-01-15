@@ -3,7 +3,7 @@ require_once(__DIR__ . '/../../controllers/ConTags.php');
 
 
 if($_SESSION['role'] == 'admin' && isset($_SESSION['user'])){
-    $welcom =  'WELCOM :'. $_SESSION['username'];
+    $welcom =  'WELCOME : '. $_SESSION['username'];
 }
 else{
     header('Location: ../authentification/login.php');

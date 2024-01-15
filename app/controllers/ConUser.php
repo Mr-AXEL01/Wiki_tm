@@ -8,12 +8,12 @@ require_once(__DIR__ . '/../models/User.php');
 
 $Userservice = new Userservice();
 
-// <---------------------------------add author--------------------------------->
+# -------------------------------add author---------------------------------
 
 if (isset($_POST["register"])) {
-    // echo '<pre>';
-    // print_r($_POST);
-    // die;
+    # echo '<pre>';
+    # print_r($_POST);
+    # die;
     $fullname = $_POST["Fname"];
     $email = $_POST["email"];
     $password = $_POST["password"];
@@ -44,7 +44,7 @@ if (isset($_POST["register"])) {
     }
 }
 
-// --------------------------------login------------------------------
+# --------------------------------login------------------------------
 
 if (isset($_POST['login'])) {
     $email = $_POST['email'];
@@ -76,12 +76,12 @@ if (isset($_POST['login'])) {
     }
 }
 
-// --------------------------fetch Authors-------------------------------
+# --------------------------fetch Authors-------------------------------
 
 $users =  $Userservice->getUser();
 
 
-// -------------------------Count authors----------------------------
+# -------------------------Count authors----------------------------
 
 
 $authors =  $Userservice->CountAUthors();

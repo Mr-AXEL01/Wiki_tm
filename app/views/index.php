@@ -124,12 +124,12 @@ unset($_SESSION["CatId"]);
                 ?>
 
                     <button type="submit" name="wikiId" value="<?= $wiki->getId() ?>">
-                        <div class="bg-white cursor-pointer rounded overflow-hidden group relative before:absolute before:inset-0 before:z-10 before:bg-black before:opacity-50">
+                        <div class="bg-white cursor-pointer rounded-[20px] overflow-hidden group relative before:absolute before:inset-0 before:z-10 before:bg-black before:opacity-50">
                             <img src="<?= $wiki->getWikiImage() ?>" alt="Blog Post 3" class="w-full h-96 object-cover group-hover:scale-110 transition-all duration-300" />
                             <div class="p-6 absolute bottom-0 left-0 right-0 z-20">
                                 <h3 class="text-xl font-bold text-white"><?= $wiki->getWikiTitle() ?></h3>
                                 <div class="mt-4">
-                                    <p class="text-gray-200 text-sm "><?= $wiki->getWikiSummarize() ?></p>
+                                    <p class="text-gray-200 text-sm  "><?= $wiki->getWikiSummarize() ?></p>
                                 </div>
                             </div>
                         </div>
@@ -160,7 +160,7 @@ unset($_SESSION["CatId"]);
         </div>
         <hr class="my-6 border-gray-300" />
           <p class='text-center text-gray-700 text-base'>Copyright © 2023<a href='index.php'
-        target='_blank' class="hover:underline mx-1">Wiki</a>All Rights Reserved.</p>
+        target='_blank' class="hover:underline mx-1">Wiki-Tm</a>All Rights Reserved.</p>
       </div>
     </footer>
 </body>

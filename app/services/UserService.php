@@ -7,8 +7,6 @@ class UserService implements UserInterface
 {
     use Database;
 
-    // protected $db;
-
     public function adduser(User $user)
 {
     $conn = $this->connect();

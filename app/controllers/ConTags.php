@@ -6,7 +6,7 @@ require_once(__DIR__ . '/../models/tag.php');
 
 $tagsService = new TagsService();
 
-// -----------------------Add Categorys----------------------------
+# -----------------------Add Categorys----------------------------
 
 if (isset($_POST["addTags"])) {
     $TagsNames = explode(',', $_POST["TagsName"]);
@@ -34,11 +34,11 @@ if (isset($_POST["addTags"])) {
         header('Location: ../views/admin/tags.php?error=true');
     }
 }
-// --------------------------------Fetch Categorys------------------------------
+# --------------------------------Fetch Categorys------------------------------
 
 $Tags = $tagsService->getTags();
 
-// -------------------------------Data for updating---------------------------------
+# -------------------------------Data for updating---------------------------------
 
 $name = '';
 if (isset($_POST['update'])) {
@@ -53,7 +53,7 @@ if (isset($_POST['update'])) {
         echo 'nothing happend';
     }
 }
-// -----------------------------UPdate Tags-------------------------------
+# -----------------------------UPdate Tags-------------------------------
 if (isset($_POST["updateTags"])) {
     $id = $_POST["updateTags"];
     $TagName = $_POST["TagsName"];
@@ -76,7 +76,7 @@ if (isset($_POST["updateTags"])) {
 }
 
 
-// ----------------------------DELETE Category-----------------------------
+# ----------------------------DELETE Category-----------------------------
 
 
 
@@ -88,14 +88,14 @@ if (isset($_POST['delete'])) {
     header('Location: ../views/admin/tags.php');
 
 }
-// -------------------------Tags of wiki---------------------
+# -------------------------Tags of wiki---------------------
 
 
 
 
 
 
-// -------------------------Count Tags----------------------------
+# -------------------------Count Tags----------------------------
 
 
 $tags =  $tagsService->CountTags();

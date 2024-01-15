@@ -264,8 +264,8 @@ class WikiService
 
             $Adminwikis[] =    new wiki($row["idWiki"], $row["pictureWiki"], $row["titleWiki"], $row['contentWiki'], $row["summaryWiki"], $row['dateCreated'], $row["idCategory"], $row['idUser'], $row['archived']);
         }
-        // print_r($Adminwikis);
-        // die;
+        # print_r($Adminwikis);
+        # die;
         return $Adminwikis;
     }
 
@@ -297,9 +297,9 @@ class WikiService
         $stmt = $conn->prepare($query);
         $stmt->bindParam(':idWiki', $id);
         $stmt->execute();
-        // Fetch the result
+        # Fetch the result
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        // Check if any rows were returned
+        # Check if any rows were returned
         if (!$row) 
         {
             return null;

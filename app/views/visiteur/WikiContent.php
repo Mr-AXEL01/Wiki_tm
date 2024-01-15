@@ -9,26 +9,34 @@ require_once(__DIR__ . "/../../controllers/ConWikis.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title><?= $title ?></title>
 </head>
 
-<body>
-    <div class="h-[35vh] w-full bg-gray-100 mt-2  overflow-hidden  ">
-        <img src="<?= $image ?>" class="hover:scale-110	rounded transition-all  duration-300 w-[95%]  mx-auto h-full" alt="<?= $title ?>">
-
-    </div>
-    <div class="font-[sans-serif]  min-h-[100vh] bg-gray-100">
-        <div class="min-h-screen px-8 py-12 text-center bg-gray-100 text-black  shadow-xl">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-4xl font-extrabold mb-6"><?= $title ?></h2>
-                <p class="text-base mb-4"><?= $content ?></p>
-                <p class="text-base"><?= $summary ?></p>
-                <a href="wikis.php" class="inline-block mt-10 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white text-base font-medium rounded-md">More wikis</a>
-            </div>
+<body class="font-sans antialiased bg-gray-300 text-black">
+    <header class="bg-gray-700 py-4">
+        <div class="container mx-auto text-center">
+            <h1 class="text-3xl text-white font-extrabold"><?= $title ?></h1>
+            <p class="text-gray-400 text-sm"><?= date('F j, Y', strtotime($date)) ?></p>
         </div>
-    </div>
+    </header>
+
+    <main class="container mx-auto mt-8 px-4 lg:px-0">
+        <img src="<?= $image ?>" class="object-cover w-full h-96 rounded-lg mb-8" alt="<?= $title ?>">
+
+        <section class="text-lg leading-relaxed mb-8">
+            <?= $content ?>
+        </section>
+
+        <section class="text-base mb-8">
+            <h3 class="text-yellow-700 text-lg mb-2">Summary:</h3>
+            <?= $summary ?>
+        </section>
+
+        <section class="text-center">
+            <a href="wikis.php" class="inline-block px-6 py-3 bg-blue-600 hover:bg-blue-800 text-white text-base font-medium rounded-md">Back to Wikis</a>
+        </section>
+    </main>
 </body>
 
 </html>

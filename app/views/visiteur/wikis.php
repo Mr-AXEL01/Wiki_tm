@@ -11,7 +11,6 @@ require_once(__DIR__ . "/../../controllers/ConCategorie.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
     <script src="https://cdn.tailwindcss.com"></script>
 
     <title>Document</title>
@@ -111,41 +110,6 @@ require_once(__DIR__ . "/../../controllers/ConCategorie.php");
     </div>
 
     <section class="flex min-h-screen ">
-        <!-------------------------------------------------------------Categorys------------------------------------------------- -->
-        <!-- <div class="w-[19%] ml-auto">
-            <div class="md:min-h-fit min-h-[50px] w-[100%]   rounded-xl bg-slate-100 flex flex-col gap-y-4 items-center py-4">
-                <div class="w-full text-center text-sm md:text-xl font-semibold md:font-bold">
-                    <h1>Categorys</h1>
-                </div>
-
-
-                <?php
-                foreach ($Categorys as $Category) :
-                ?>
-                    <div>
-                        <form action="../../controllers/ConWikis.php" method="post">
-                            <input type="hidden" name="catId" value="<?= $Category->getId() ?>">
-                            <div class="flex flex-col w-[93%] rounded-t	 mx-auto items-center shadow-md rounded-[40px]">
-                                <a href="#">
-                                    <img class="w-full rounded-t" src="<?= $Category->getCategory_image(); ?>" alt="Sunset in the mountains">
-
-
-                                </a>
-
-                                <button type="submit" class="text-center rounded-b w-full bg-blue-600 px-4 py-2 text-white text-sm hover:bg-white hover:text-indigo-600 transition duration-500 ">
-                                    <?= $Category->getCategory_name(); ?>
-                                </button>
-
-
-
-                            </div>
-                        </form>
-                    </div>
-                <?php
-                endforeach;
-                ?>
-            </div>
-        </div> -->
         <!--------------------------------------------------------------WIKIS------------------------------------------------- -->
         <div id="searchcontainer" class="hidden min-h-full w-[70%] mx-auto rounded-xl">
         </div>
@@ -158,13 +122,13 @@ require_once(__DIR__ . "/../../controllers/ConCategorie.php");
 
 
             foreach ($wik as $wiki) : ?>
-                <div class="md:flex cursor-pointer md:flex-col lg:flex-row w-full lg:min-h-[25vh] min-h-fit bg-slate-100 rounded-xl p-8 md:p-0  hover:scale-105 mb-6 md:mb-4">
+                <div class="md:flex cursor-pointer  md:flex-col lg:flex-row w-full lg:min-h-[25vh] min-h-fit bg-slate-100 rounded-xl p-8 md:p-0 overflow-hidden hover:scale-105 mb-6 md:mb-4">
                     <img class="lg:max-w-1/4  lg:min-h-[25vh] h-[5%]  md:h-auto md:rounded-xl rounded-xl mx-auto lg:mx-0" src="<?= $wiki['pictureWiki'] ?>" alt="<?= $wiki['titleWiki'] ?>" width="384" height="512">
                     <div class="pt-6 w-[100%] md:p-8 text-center md:text-left space-y-4">
                         <div class="text-slate-700 text-2xl font-bold">
                             <h1><?= $wiki['titleWiki'] ?></h1>
                         </div>
-                        <div class="w-full">
+                        <div class="text-wrap">
                             <p class="text-lg  font-medium">
                                 <?= $wiki['summaryWiki'] ?>
                             </p>
@@ -208,7 +172,7 @@ require_once(__DIR__ . "/../../controllers/ConCategorie.php");
         <div class="py-8 px-4 sm:px-12">
             <div class="flex flex-wrap items-center justify-between">
                 <div class="w-full md:w-auto text-center md:text-left mb-6 md:mb-0">
-                    <a href="javascript:void(0)" class="text-gray-700 hover:text-gray-900 font-extrabold text-2xl">ReadymadeUI</a>
+                    <a href="javascript:void(0)" class="text-gray-700 hover:text-gray-900 font-extrabold text-2xl">Wiki-tm</a>
                 </div>
                 <div class="w-full md:w-auto text-center">
                     <ul class="flex items-center justify-center flex-wrap gap-y-2 md:justify-end space-x-6">
@@ -220,7 +184,7 @@ require_once(__DIR__ . "/../../controllers/ConCategorie.php");
                 </div>
             </div>
             <hr class="my-6 border-gray-300" />
-            <p class='text-center text-gray-700 text-base'>Copyright © 2023<a href='../index.php' target='_blank' class="hover:underline mx-1">Wiki</a>All Rights Reserved.</p>
+            <p class='text-center text-gray-700 text-base'>Copyright © 2023<a href='../index.php' target='_blank' class="hover:underline mx-1">Wiki-tm</a>All Rights Reserved.</p>
         </div>
     </footer>
     <script>

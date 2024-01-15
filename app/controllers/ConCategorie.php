@@ -6,7 +6,7 @@ require_once(__DIR__ . '/../models/Category.php');
 
 $categoryService = new CategoryService();
 
-// -----------------------Add Categorys----------------------------
+# -----------------------Add Categorys----------------------------
 
 if (isset($_POST["addCat"])) {
     $CatName = $_POST["CategoryName"];
@@ -33,7 +33,7 @@ if (isset($_POST["addCat"])) {
 }
 
 
-// --------------------------------Fetch Categorys------------------------------
+# --------------------------------Fetch Categorys------------------------------
 
 $Categorys = $categoryService->getCategorys();
 
@@ -41,7 +41,7 @@ $categories =$categoryService->getHomeCategorys();
 
 
 
-// <!-- ---------------------data for updating------------------------ -->
+#  ---------------------data for updating------------------------ 
 $name = '';
 $desc = '';
 $img = '';
@@ -57,7 +57,7 @@ if (isset($_POST['update'])) {
         echo 'rien de rien';
     }
 }
-// ------------------------------------Update Category---------------------------------
+# ------------------------------------Update Category---------------------------------
 
 if (isset($_POST["updateCat"])) {
     $id = $_POST["updateCat"];
@@ -83,7 +83,7 @@ if (isset($_POST["updateCat"])) {
 
 
 
-// ----------------------------DELETE Category-----------------------------
+# ----------------------------DELETE Category-----------------------------
 
 
 
@@ -96,7 +96,7 @@ if (isset($_POST['delete'])) {
 
 }
 
-// -------------------------Count category----------------------------
+# -------------------------Count category----------------------------
 
 
 $category =  $categoryService->CountCatgorys();
