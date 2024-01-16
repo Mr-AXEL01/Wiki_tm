@@ -8,7 +8,7 @@ require_once(__DIR__ . '/../models/wikisTags.php');
 
 $WikisService = new WikiService();
 
-# -----------------------Add wiki----------------------------
+# .....................Add wiki.....................
 
 if (isset($_POST["addWiki"])) {
     $wikiTitile = $_POST["Title"];
@@ -33,7 +33,6 @@ if (isset($_POST["addWiki"])) {
             $wikis = new wiki($id, URLROOT . 'public/images/' . $image, $wikiTitile, $wikiContent, $wikiSummary, $created_at, $wikiCategory, $wikiAuthor, $WikiStatus);
             $wikiId =  $WikisService->addWikis($wikis);
             foreach ($selectedTags as $selectedTag) {
-            $tagname='';
                 $wikistags = new WikisTags($wikiId, $selectedTag,$tag);
                 $WikisService->TagsOfWikis($wikistags);
             }
@@ -44,54 +43,23 @@ if (isset($_POST["addWiki"])) {
         header('Location: ../views/Author/AddWiki.php?error=true');
     }
 }
-# --------------------------fetch Wikis-------------------------------
-
-if(isset($_POST["catId"])) {
-$_SESSION["CatId"] = isset($_POST["catId"]) ? $_POST["catId"] :'';
-
-
-header('Location: '.URLROOT. 'app/views/visiteur/wikis.php');
-
-}
-
-$id = isset($_SESSION["CatId"]) ? $_SESSION["CatId"] :'';
-
-$wikisCat =  $WikisService->getFilteredWikis($id);
-
-
-
-
 
 $wikis =  $WikisService->getWikis();
 
 
-# -----------------------------Fetch Wikis for home page -------------------------
+# .....................Fetch Wikis for home page .....................
 
 $wikiHome =  $WikisService->getHomeWiki();
 
-
-
-
-
-
-
-
-if (isset($_POST['Unset'])) {
-    unset($_SESSION["CatId"]);
-    header('Location: ../views/visiteur/wikis.php');
-}
-# --------------------------fetch Admin Wikis-------------------------------
+# .....................fetch Admin Wikis.....................
 
 $AdminWikis =  $WikisService->getAdminWikis();
 
-
-# --------------------------fetch Auhor Wikis-------------------------------
+# .....................fetch Auhor Wikis.....................
 $UserId = isset($_SESSION['user']) ? $_SESSION['user'] :'';
 $AuthorWikis =  $WikisService->getAuthorWikis($UserId);
 
-
-
-# ------------------------------Display update data-----------------------
+# .....................Display update data.....................
 
 $img = '';
 $title = '';
@@ -106,11 +74,11 @@ if (isset($_POST['update'])) {
         $_SESSION['Idwiki'] = $id;
         header('Location: ../views/Author/AddWiki.php');
     } else {
-        echo 'rien de rien';
+        echo 'nothing to update';
     }
 }
 
-# --------------------------------Update Wiki----------------------------------
+# .....................Update Wiki.....................
 
 if (isset($_POST["updatewiki"])) {
     $id = $_POST["updatewiki"];
@@ -122,10 +90,8 @@ if (isset($_POST["updatewiki"])) {
     $image = $_FILES["image"]["name"];
       $WikiStatus = '';
     $idwiki = '';
-    if ($wikiTitile !== '' && $wikiSummary !== '' && $wikiContent !== '') {
-
-
-
+    if ($wikiTitile !== '' && $wikiSummary !== '' && $wikiContent !== '') 
+    {
         $wikis = new wiki($idwiki, URLROOT . 'public/images/' . $image, $wikiTitile, $wikiContent, $wikiSummary, $created_at, $wikiCategory, $wikiAuthor, $WikiStatus);
         $WikisService->updateWiki($wikis, $id);
         unset($_SESSION['Idwiki']);
@@ -136,7 +102,7 @@ if (isset($_POST["updatewiki"])) {
     }
 }
 
-# --------------------------------delete Wiki----------------------------------
+# .....................delete Wiki.....................
 
 if (isset($_POST['delete'])) {
     $id = $_POST['delete'];
@@ -144,14 +110,14 @@ if (isset($_POST['delete'])) {
     header('Location: ../views/Author/dashboardWikis.php');
 }
 
-# ---------------------------Archive-----------------------------
+# .....................Archive.....................
 
 if (isset($_POST['archive'])) {
     $id = $_POST['archive'];
     $WikisService->ArchiveWiki($id);
     header('Location: ../views/admin/wikis.php');
 }
-# ---------------------------UnArchive-----------------------------
+# .....................UnArchive.....................
 
 if (isset($_POST['unarchive'])) {
     $id = $_POST['unarchive'];
@@ -159,15 +125,15 @@ if (isset($_POST['unarchive'])) {
     header('Location: ../views/admin/wikis.php');
 }
 
-# -------------------------------Count Wikis---------------------------------------------
+# .....................Count Wikis.....................
 
 $wikiTot = $WikisService->CountWikis();
 
-# -------------------------------Count Archived Wikis---------------------------------------------
+# .....................Count Archived Wikis.....................
 
 $wikiArchived = $WikisService->CountArchivedWikis();
 
-# ----------------------------------- WIKI -------------------------------------------
+# ..................... WIKI .....................
 
 if(isset($_POST["wikiId"])) {
     $_SESSION["wikiId"] = isset($_POST["wikiId"]) ? $_POST["wikiId"] :'';
@@ -180,12 +146,7 @@ if(isset($_POST["wikiId"])) {
 
 $wiki = $WikisService->Wiki($id);
 
-
-# -----------------------------------Tags---------------------------------------
-
-$tagse = $WikisService->WikiTag();
-
-# -------------------------ajax-----------------------------
+# .....................ajax.....................
 
 if (isset($_POST['search'])) {
     $searchTerm = $_POST['search'];

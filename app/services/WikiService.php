@@ -34,7 +34,6 @@ class WikiService
     }
     public function TagsOfWikis(WikisTags $wikiTgas)
     {
-
         $conn = $this->connect();
         $wikiId =  $wikiTgas->getWikiId();
         $tagId =  $wikiTgas->getTagId();
@@ -48,7 +47,6 @@ class WikiService
 
     public function CheckWiki($title)
     {
-
         $conn = $this->connect();
         $query = "SELECT  titleWiki FROM wiki where titleWiki = :titleWiki";
         $stmt = $conn->prepare($query);
@@ -59,24 +57,20 @@ class WikiService
     }
     public function getWikis()
     {
-       
         $conn = $this->connect();
         $query = "SELECT wiki.*, tag.nameTag, category.nameCategory , user.fullName
         FROM wiki 
         JOIN tagsofwiki ON wiki.idWiki = tagsofwiki.idWiki
         JOIN tag ON tag.idTag = tagsofwiki.idTag 
         JOIN user On wiki.idUser = user.idUser
-                  LEFT JOIN category ON wiki.idCategory = category.idCategory
-                  WHERE archived = '1'";
-
+        LEFT JOIN category ON wiki.idCategory = category.idCategory
+        WHERE archived = '1'";
         $stmt = $conn->prepare($query);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
         $wikis = array();
         foreach ($result as $row) {
             $wikiId = $row["idWiki"];
-
             if (!isset($wikis[$wikiId])) {
                 $wikis[$wikiId] = array(
                     'idWiki' => $wikiId,
@@ -91,24 +85,17 @@ class WikiService
                     'tags' => array(),
                     'category' => $row['nameCategory'],
                     'username' => $row['fullName'],
-
                 );
             }
-
             $wikis[$wikiId]['tags'][] = $row['nameTag'];
         }
-
         $wikis = array_values($wikis);
-
         return $wikis;
     }
 
-
     public function getHomeWiki()
     {
-
         $conn = $this->connect();
-
         $query = "SELECT * FROM wiki WHERE archived = '1' ORDER BY titleWiki DESC LIMIT 3 ";
         $stmt = $conn->prepare($query);
         $stmt->execute();
@@ -131,77 +118,10 @@ class WikiService
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $wikis = array();
         foreach ($result as $row) {
-
-
             $wikis[] =   new wiki($row["idWiki"], $row["pictureWiki"], $row["titleWiki"], $row['contentWiki'], $row["summaryWiki"], $row['dateCreated'], $row["idCategory"], $row['idUser'], $row['archived']);
         }
         return $wikis;
     }
-    public function getFilteredWikis($id)
-    {
-        $conn = $this->connect();
-        $query = "SELECT wiki.*, tag.nameTag, category.nameCategory , user.fullName
-                  FROM wiki 
-                  JOIN tagsofwiki ON wiki.idWiki = tagsofwiki.idWiki
-                  JOIN tag ON tag.idTag = tagsofwiki.idTag 
-                  JOIN user On wiki.idUser = user.idUser
-                  LEFT JOIN category ON wiki.idCategory = category.idCategory
-                  WHERE archived = '1' AND wiki.idCategory = :id";
-
-        $stmt = $conn->prepare($query);
-        $stmt->bindParam(":id", $id);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $wikis = array();
-        foreach ($result as $row) {
-            $wikiId = $row["idWiki"];
-
-            if (!isset($wikis[$wikiId])) {
-                $wikis[$wikiId] = array(
-                    'idWiki' => $wikiId,
-                    'pictureWiki' => $row["pictureWiki"],
-                    'titleWiki' => $row["titleWiki"],
-                    'contentWiki' => $row['contentWiki'],
-                    'summaryWiki' => $row["summaryWiki"],
-                    'dateCreated' => $row['dateCreated'],
-                    'idCategory' => $row["idCategory"],
-                    'idUser' => $row['idUser'],
-                    'archived' => $row['archived'],
-                    'tags' => array(),
-                    'category' => $row['nameCategory'],
-                    'username' => $row['fullName'],
-                );
-            }
-
-            $wikis[$wikiId]['tags'][] = $row['nameTag'];
-        }
-
-        $wikis = array_values($wikis);
-
-        return $wikis;
-    }
-
-
-    public function updateWiki(wiki $wiki, $id)
-    {
-
-
-        $conn = $this->connect();
-        $wikiTitle = $wiki->getWikiTitle();
-        $wikiContent = $wiki->getWikiContent();
-        $wikiSummary = $wiki->getWikiSummarize();
-        $wikiImage = $wiki->getWikiImage();
-        $query = 'UPDATE wiki SET pictureWiki =:pictureWiki , titleWiki=:titleWiki ,summaryWiki=:summaryWiki ,  contentWiki=:contentWiki WHERE idWiki = :idWiki';
-        $stmt = $conn->prepare($query);
-        $stmt->bindParam(':titleWiki', $wikiTitle);
-        $stmt->bindParam(':summaryWiki', $wikiSummary);
-        $stmt->bindParam(':contentWiki', $wikiContent);
-        $stmt->bindParam(':pictureWiki', $wikiImage);
-        $stmt->bindParam(':idWiki', $id);
-        $stmt->execute();
-    }
-
 
     public function displayUpdateWiki($id)
     {
@@ -219,7 +139,22 @@ class WikiService
         return [$img, $title, $content, $summary];
     }
 
-
+    public function updateWiki(wiki $wiki, $id)
+    {
+        $conn = $this->connect();
+        $wikiTitle = $wiki->getWikiTitle();
+        $wikiContent = $wiki->getWikiContent();
+        $wikiSummary = $wiki->getWikiSummarize();
+        $wikiImage = $wiki->getWikiImage();
+        $query = 'UPDATE wiki SET pictureWiki =:pictureWiki , titleWiki=:titleWiki ,summaryWiki=:summaryWiki ,  contentWiki=:contentWiki WHERE idWiki = :idWiki';
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':titleWiki', $wikiTitle);
+        $stmt->bindParam(':summaryWiki', $wikiSummary);
+        $stmt->bindParam(':contentWiki', $wikiContent);
+        $stmt->bindParam(':pictureWiki', $wikiImage);
+        $stmt->bindParam(':idWiki', $id);
+        $stmt->execute();
+    }
 
     public function deleteWiki($id)
     {
@@ -232,7 +167,6 @@ class WikiService
 
     public function ArchiveWiki($id)
     {
-
         $conn = $this->connect();
         $query = "UPDATE wiki set archived = '0' WHERE idWiki =:idWiki";
         $stmt = $conn->prepare($query);
@@ -241,7 +175,6 @@ class WikiService
     }
     public function uNArchiveWiki($id)
     {
-
         $conn = $this->connect();
         $query = "UPDATE wiki set archived = '1' WHERE idWiki =:idWiki";
         $stmt = $conn->prepare($query);
@@ -252,7 +185,6 @@ class WikiService
 
     public function getAdminWikis()
     {
-
         $conn = $this->connect();
         $query = "SELECT * FROM wiki";
         $stmt = $conn->prepare($query);
@@ -260,8 +192,6 @@ class WikiService
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $Adminwikis = array();
         foreach ($result as $row) {
-
-
             $Adminwikis[] =    new wiki($row["idWiki"], $row["pictureWiki"], $row["titleWiki"], $row['contentWiki'], $row["summaryWiki"], $row['dateCreated'], $row["idCategory"], $row['idUser'], $row['archived']);
         }
         # print_r($Adminwikis);
@@ -269,10 +199,8 @@ class WikiService
         return $Adminwikis;
     }
 
-
     public function CountWikis()
     {
-
         $conn = $this->connect();
         $query = 'SELECT COUNT(idWiki) as Wikis FROM wiki';
         $stmt = $conn->prepare($query);
@@ -282,7 +210,6 @@ class WikiService
     }
     public function CountArchivedWikis()
     {
-
         $conn = $this->connect();
         $query = 'SELECT COUNT(idWiki) as Wikis FROM wiki WHERE archived = "0" ';
         $stmt = $conn->prepare($query);
@@ -297,9 +224,8 @@ class WikiService
         $stmt = $conn->prepare($query);
         $stmt->bindParam(':idWiki', $id);
         $stmt->execute();
-        # Fetch the result
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        # Check if any rows were returned
+
         if (!$row) 
         {
             return null;
@@ -313,29 +239,10 @@ class WikiService
         $date  = $wiki->getDate();
 
         return [$idwiki, $image, $title, $summary, $content, $date];
-    }
-
-    public function WikiTag()
-    {
-        $conn = $this->connect();
-        $query = "SELECT tag.nameTag 
-         FROM tag
-        JOIN  tagsofwiki ON tag.idTag =  tagsofwiki.idTag 
-         Join wiki ON  tagsofwiki.idWiki = wiki.idWiki";
-        $stmt = $conn->prepare($query);
-        $stmt->execute();
-        $results =  $stmt->fetchAll();
-        $tags = array();
-        foreach ($results as $row) {
-            $tags[] = new WikisTags($row, $row, $row["nameTag"]);
-        }
-        return $tags;
-    }
-
+    }  
 
     public function searchWikis($search)
     {
-       
         $conn = $this->connect();
         $query = "SELECT wiki.*, tag.nameTag, category.nameCategory, user.fullName
         FROM wiki
@@ -344,19 +251,13 @@ class WikiService
         JOIN user ON wiki.idUser = user.idUser
         LEFT JOIN category ON wiki.idCategory = category.idCategory
         WHERE archived = '1' 
-        AND (nameTag LIKE '%{$search}%' OR nameCategory LIKE '%{$search}%' OR titleWiki LIKE '%{$search}%')
-        ";
-
+        AND (nameTag LIKE '%{$search}%' OR nameCategory LIKE '%{$search}%' OR titleWiki LIKE '%{$search}%')";
         $stmt = $conn->prepare($query);
-        
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
         $wikis = array();
         foreach ($result as $row) {
             $wikiId = $row["idWiki"];
-
-
             if (!isset($wikis[$wikiId])) {
                 $wikis[$wikiId] = array(
                     'idWiki' => $wikiId,
@@ -373,10 +274,8 @@ class WikiService
                     'username' => $row['fullName'],
                 );
             }
-
             $wikis[$wikiId]['tags'][] = $row['nameTag'];
         }
-
         $wikis = array_values($wikis);
 
         return $wikis;

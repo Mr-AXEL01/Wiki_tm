@@ -10,9 +10,9 @@ class Category{
 
 
     public function __construct($id, $category_name, $category_desc, $category_image){
-        $this->id = $id;
-        $this->category_name = $category_name;
-        $this->category_desc = $category_desc;
+        $this->id             = $id;
+        $this->category_name  = $category_name;
+        $this->category_desc  = $category_desc;
         $this->category_image = $category_image;
 }
 public function getId()

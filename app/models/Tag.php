@@ -9,7 +9,7 @@ class Tag{
 
 
     public function __construct( $id,  $tag_name){
-    $this->id = $id;
+    $this->id       = $id;
     $this->tag_name = $tag_name;
         
     }

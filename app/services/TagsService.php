@@ -72,7 +72,7 @@ class TagsService implements TagsInterface
         $conn = $this->connect();
         $Tag_name = $tag->getTag_name();
 
-        $query = "UPDATE tag SET nameTag=:name WHERE idTag =:idTag";
+        $query = "UPDATE tag SET nameTag=:nameTag WHERE idTag =:idTag";
         $stmt = $conn->prepare($query);
         $stmt->bindParam(":idTag", $id);
         $stmt->bindParam(":nameTag", $Tag_name);

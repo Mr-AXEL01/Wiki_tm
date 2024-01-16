@@ -11,11 +11,11 @@ private $role;
 
 public function __construct($id, $fullname, $email, $password ,$role){
 
-        $this->id = $id;
+        $this->id       = $id;
         $this->fullname = $fullname;
-        $this->email = $email;
+        $this->email    = $email;
         $this->password = $password;
-        $this->role = $role;
+        $this->role     = $role;
 }
 public function getId()
 {

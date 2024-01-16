@@ -31,7 +31,7 @@ else{
         <div class="bg-white text-white shadow w-full p-2 flex items-center justify-between">
             <div class="flex items-center justify-between px-4 mx-auto w-[95%]">
                 <div class="flex items-center ">
-                    <a href="../index.php"><img src="../../../public/images/logowiki.png" alt="Logo" class="w-24 h-18 mr-2"></a>
+                    <a href="../index.php"><img src="../../../public/images/Wiki-black.png" alt="Logo" class="w-24 h-18 mr-2"></a>
 
                 </div>
                 <a href="../visiteur/wikis.php" class="flex gap-x-2 md:font-bold items-center text-[10px] md:text-[14px] h-10 px-5 text-indigo-100 transition-colors duration-150 bg-blue-600 rounded-lg focus:shadow-outline hover:bg-blue-700">Wikis</a>
@@ -57,7 +57,7 @@ else{
                     <div class="bg-gradient-to-r from-sky-100 to-sky-900 h-px mb-6"></div>
                     <div class="overflow-x-auto">
                         <table class="min-w-full bg-white font-[sans-serif]">
-                            <thead class="bg-gradient-to-r from-sky-300 to-sky-800 whitespace-nowrap">
+                            <thead class="bg-gradient-to-r from-sky-900 to-black whitespace-nowrap">
                                 <tr>
 
                                     <th class="px-6 py-3 text-left text-sm font-semibold text-white">
@@ -88,11 +88,11 @@ else{
 
 
                                         <td class="px-6 py-4 text-sm ">
-                                            <div class="max-w-[450px] text-[10px] lg:text-[13px] h-12 lg:h-28 text-wrap"> 
+                                            <div class="max-w-[450px] text-[10px] lg:text-[13px] h-12 lg:h-28 flex items-center justify-center text-wrap"> 
                                                 <?= $wiki->getWikiSummarize(); ?>
                                             </div>
                                         </td>
-                                        <td class="px-6 py-4 flex">
+                                        <td class="px-6 py-4 flex items-center">
                                             <form action="../../controllers/ConWikis.php" method="post">
                                                 <button class="mr-4" title="Edit" name="update" value="<?= $wiki->getId(); ?>">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 fill-blue-500 hover:fill-blue-700" viewBox="0 0 348.882 348.882">
