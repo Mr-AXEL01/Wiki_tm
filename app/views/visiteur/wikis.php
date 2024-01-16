@@ -59,7 +59,7 @@ require_once(__DIR__ . "/../../controllers/ConCategorie.php");
                             <?php } else { ?>
                                 <a href="../authentification/login.php">
                                     <button type="button"
-                                        class="mr-3 inline-block rounded px-4 pb-2 pt-2.5 text-[10px] md:text-xs font-medium uppercase text-white transition duration-150  hover:bg-neutral-200 focus:outline-none ">
+                                        class="mr-3 inline-block rounded px-4 pb-2 pt-2.5 text-[10px] md:text-xs font-medium uppercase text-white transition duration-150  hover:bg-neutral-200 hover:text-black focus:outline-none ">
                                         Login
                                     </button>
                                 </a>
